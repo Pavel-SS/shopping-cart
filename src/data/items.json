@@ -18,9 +18,9 @@
         "imgURL":"/img/banana.jpg"
     },
     {
-        "id": 1,
-        "name": "Book",
-        "price": 10.99,
-        "imgURL":"/img/book.jpg"
+        "id": 4,
+        "name": "Car",
+        "price": 7000,
+        "imgURL":"/img/car.jpg"
     }
 ]
