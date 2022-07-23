@@ -2,25 +2,25 @@
     {
         "id": 1,
         "name": "Book",
-        "price": 10.99,
+        "price": 56.7,
         "imgURL":"/img/book.jpg"
     },
     {
         "id": 2,
         "name": "Computer",
-        "price": 1199,
+        "price": 2550,
         "imgURL":"/img/computer.jpg"
     },
     {
         "id": 3,
         "name": "Banana",
-        "price": 1.05,
+        "price": 3.05,
         "imgURL":"/img/banana.jpg"
     },
     {
         "id": 4,
         "name": "Car",
-        "price": 7000,
+        "price": 37000,
         "imgURL":"/img/car.jpg"
     }
 ]
