@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 import { currencyFormat } from "../util/currencyFormat"
 
 type StoreItemProps = {
@@ -9,8 +9,9 @@ type StoreItemProps = {
 }
 
 export const StoreItem: React.FC<StoreItemProps> = ({id, name, price, imgURL}) => {
+    const quantity = 1;
     return (
-        <Card>
+        <Card className="h-100">
             <Card.Img variant="top" src={imgURL} height="220px" style={{objectFit: "cover"}}/>
             <Card.Body className="d-flex flex-column">
                 <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
@@ -21,6 +22,27 @@ export const StoreItem: React.FC<StoreItemProps> = ({id, name, price, imgURL}) =
                         {currencyFormat(price)}
                     </span>
                 </Card.Title>
+                <div className="mt-auto">
+                    {quantity === 0 ? (
+                        <Button className="w-100">
+                            +Add to card
+                        </Button>
+                        ):
+                        <div className="d-flex align-items-center flex-column" style={{gap:"0.5rem"}}>
+                            <div className="d-flex align-items-center justify-content-center" style={{gap:"0.5rem"}}>
+                                <Button>-</Button>
+                                <div>
+                                    <span className="fs-4">
+                                        {quantity}
+                                    </span>
+                                     in cart
+                                </div>
+                                <Button>+</Button>
+                            </div>
+                            <Button variant="danger" size="sm">Remove</Button>
+                        </div>
+                    }
+                </div>
             </Card.Body>
         </Card>
     )
