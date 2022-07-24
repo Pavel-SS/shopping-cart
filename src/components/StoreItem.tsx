@@ -1,4 +1,5 @@
 import { Button, Card } from "react-bootstrap"
+import { useShopipingCart } from "../context/shoppingCardContext"
 import { currencyFormat } from "../util/currencyFormat"
 
 type StoreItemProps = {
@@ -9,7 +10,14 @@ type StoreItemProps = {
 }
 
 export const StoreItem: React.FC<StoreItemProps> = ({id, name, price, imgURL}) => {
-    const quantity = 1;
+    const {
+        getItemQuantity, 
+        increaseCardQuantity, 
+        decreaseCardQuantity, 
+        removeFormCard
+    } = useShopipingCart();
+
+    const quantity = getItemQuantity(id);
     return (
         <Card className="h-100">
             <Card.Img variant="top" src={imgURL} height="220px" style={{objectFit: "cover"}}/>
@@ -24,22 +32,28 @@ export const StoreItem: React.FC<StoreItemProps> = ({id, name, price, imgURL}) =
                 </Card.Title>
                 <div className="mt-auto">
                     {quantity === 0 ? (
-                        <Button className="w-100">
+                        <Button className="w-100" onClick={() => increaseCardQuantity(id)}>
                             +Add to card
                         </Button>
                         ):
                         <div className="d-flex align-items-center flex-column" style={{gap:"0.5rem"}}>
                             <div className="d-flex align-items-center justify-content-center" style={{gap:"0.5rem"}}>
-                                <Button>-</Button>
+                                <Button onClick={() => decreaseCardQuantity(id)}>
+                                    -
+                                </Button>
                                 <div>
                                     <span className="fs-4">
                                         {quantity}
                                     </span>
                                      in cart
                                 </div>
-                                <Button>+</Button>
+                                <Button onClick={() => increaseCardQuantity(id)}>
+                                    +
+                                </Button>
                             </div>
-                            <Button variant="danger" size="sm">Remove</Button>
+                            <Button variant="danger" size="sm" onClick={()=>removeFormCard(id)}>
+                                Remove
+                            </Button>
                         </div>
                     }
                 </div>
