@@ -9,21 +9,30 @@ type CartItemType = {
     quantity: number
 }
 type ShoppingCardContext = {
+    openCart: () => void
+    closeCart: () => void
     getItemQuantity: (id: number) => number
     increaseCardQuantity: (id: number) => void
     decreaseCardQuantity: (id: number) => void
     removeFormCard: (id: number) => void
+    cartQuantity: number
+    cartItems: CartItemType[]
 }
 
 const ShoppingCardContext  = createContext({} as ShoppingCardContext)
 
-export const useShopipingCart= () => {
+export const useShoppingCart= () => {
     return useContext(ShoppingCardContext)
 }
 
 export const ShoppingCardProvider: React.FC<ShoppingCardProviderProps> = ({children}) => {
     const [cartItems, setCartItems] = useState<CartItemType[]>([])
+    const [openOrClose, setOpenOrClose] = useState<boolean>(false)
 
+    const cartQuantity = cartItems.reduce((quantity, item) =>
+     item.quantity + quantity, 0)
+    const openCart = () => setOpenOrClose(true)
+    const closeCart = () => setOpenOrClose(false)
     const getItemQuantity = (id: number) => {
         return cartItems.find(item => item.id === id)?.quantity || 0
     }
@@ -67,9 +76,14 @@ export const ShoppingCardProvider: React.FC<ShoppingCardProviderProps> = ({child
            getItemQuantity, 
            increaseCardQuantity,
            decreaseCardQuantity,
-           removeFormCard
+           removeFormCard,
+           cartItems,
+           cartQuantity,
+           openCart,
+           closeCart
            }}>
            {children}
+           <ShoppingCart/>
        </ShoppingCardContext.Provider>
     )
 }
