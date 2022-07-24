@@ -1,5 +1,5 @@
 import { Button, Card } from "react-bootstrap"
-import { useShopipingCart } from "../context/shoppingCardContext"
+import { useShoppingCart } from "../context/shoppingCardContext"
 import { currencyFormat } from "../util/currencyFormat"
 
 type StoreItemProps = {
@@ -15,7 +15,7 @@ export const StoreItem: React.FC<StoreItemProps> = ({id, name, price, imgURL}) =
         increaseCardQuantity, 
         decreaseCardQuantity, 
         removeFormCard
-    } = useShopipingCart();
+    } = useShoppingCart();
 
     const quantity = getItemQuantity(id);
     return (
@@ -42,10 +42,12 @@ export const StoreItem: React.FC<StoreItemProps> = ({id, name, price, imgURL}) =
                                     -
                                 </Button>
                                 <div>
-                                    <span className="fs-4">
+                                    <span className="fs-4" style={{marginRight:"5px"}}>
                                         {quantity}
                                     </span>
-                                     in cart
+                                    <span className="fs-5">
+                                        in cart
+                                    </span>
                                 </div>
                                 <Button onClick={() => increaseCardQuantity(id)}>
                                     +
