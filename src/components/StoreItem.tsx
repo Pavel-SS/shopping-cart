@@ -12,9 +12,9 @@ type StoreItemProps = {
 export const StoreItem: React.FC<StoreItemProps> = ({id, name, price, imgURL}) => {
     const {
         getItemQuantity, 
-        increaseCardQuantity, 
-        decreaseCardQuantity, 
-        removeFormCard
+        increaseCartQuantity, 
+        decreaseCartQuantity, 
+        removeFormCart
     } = useShoppingCart();
 
     const quantity = getItemQuantity(id);
@@ -32,13 +32,13 @@ export const StoreItem: React.FC<StoreItemProps> = ({id, name, price, imgURL}) =
                 </Card.Title>
                 <div className="mt-auto">
                     {quantity === 0 ? (
-                        <Button className="w-100" onClick={() => increaseCardQuantity(id)}>
+                        <Button className="w-100" onClick={() => increaseCartQuantity(id)}>
                             +Add to card
                         </Button>
                         ):
                         <div className="d-flex align-items-center flex-column" style={{gap:"0.5rem"}}>
                             <div className="d-flex align-items-center justify-content-center" style={{gap:"0.5rem"}}>
-                                <Button onClick={() => decreaseCardQuantity(id)}>
+                                <Button onClick={() => decreaseCartQuantity(id)}>
                                     -
                                 </Button>
                                 <div>
@@ -49,11 +49,11 @@ export const StoreItem: React.FC<StoreItemProps> = ({id, name, price, imgURL}) =
                                         in cart
                                     </span>
                                 </div>
-                                <Button onClick={() => increaseCardQuantity(id)}>
+                                <Button onClick={() => increaseCartQuantity(id)}>
                                     +
                                 </Button>
                             </div>
-                            <Button variant="danger" size="sm" onClick={()=>removeFormCard(id)}>
+                            <Button variant="danger" size="sm" onClick={()=>removeFormCart(id)}>
                                 Remove
                             </Button>
                         </div>
