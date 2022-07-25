@@ -1,6 +1,7 @@
-import { Stack } from "react-bootstrap"
+import { Button, Stack } from "react-bootstrap"
 import { useShoppingCart } from "../context/shoppingCardContext"
 import storeItems from "../data/items.json"
+import { currencyFormat } from "../util/currencyFormat"
 
 
 
@@ -33,7 +34,14 @@ export const CartItem: React.FC<CartItemPropsType> = ({id, quantity}) => {
                                 </span>
                                 }
                 </div>
-            </div> 
+                <div className="text-muted" style={{fontSize:"0.75rem"}}>
+                    {currencyFormat(item.price)}
+                </div> 
+            </div>
+                <div >
+                    {currencyFormat(item.price * quantity)}
+                </div>
+                <Button variant="outline-danger" size="sm" onClick={()=>removeFormCart(item.id)}>&times;</Button>
         </Stack>
     )
 }
