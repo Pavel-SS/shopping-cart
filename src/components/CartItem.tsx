@@ -17,7 +17,7 @@ export const CartItem: React.FC<CartItemPropsType> = ({id, quantity}) => {
         return null
     }
     return(
-        <Stack direction="horizontal" gap={2}>
+        <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
             <img src={item?.imgURL} style={{
                 width:"125px", 
                 height:"75px", 
@@ -25,6 +25,15 @@ export const CartItem: React.FC<CartItemPropsType> = ({id, quantity}) => {
                 }} 
                 alt="pic" 
             />
+            <div className="me-auto">
+                <div>
+                    {item.name} {quantity > 1 && 
+                                <span className="text-muted" style={{ fontSize:"0.8rem"}}>
+                                    x{quantity}
+                                </span>
+                                }
+                </div>
+            </div> 
         </Stack>
     )
 }
